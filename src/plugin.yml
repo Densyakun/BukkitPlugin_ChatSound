@@ -1,0 +1,5 @@
+name: ChatSound
+main: io.github.densyakun.bukkit.chatsound.Main
+version: 1.1 for MC1.8
+author: Densyakun
+website: https://github.com/Densyakun/BukkitPlugin_ChatSound
