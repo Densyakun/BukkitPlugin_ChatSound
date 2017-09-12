@@ -12,16 +12,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 @SuppressWarnings("deprecation")
 public class Main extends JavaPlugin implements Listener {
 	/**
-	 * 1.9非対応
+	 * 1.8.x以前非対応
 	 */
-	Sound sound = Sound.NOTE_PIANO;
+	Sound sound = Sound.BLOCK_NOTE_HARP;
 	float volume = 1.0f;
 	float pitch = 12.0f;
 	
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();
-		Sound a = Sound.valueOf(getConfig().getString("sound", "NOTE_PIANO"));
+		Sound a = Sound.valueOf(getConfig().getString("sound", "BLOCK_NOTE_HARP"));
 		if (a != null) {
 			sound = a;
 		}
