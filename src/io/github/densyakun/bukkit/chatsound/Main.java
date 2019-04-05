@@ -12,17 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 @SuppressWarnings("deprecation")
 public class Main extends JavaPlugin implements Listener {
 
-	/**
-	 * 1.8.x以前非対応
-	 */
-	Sound sound = Sound.BLOCK_NOTE_HARP;
+	Sound sound = null;
 	float volume = 1.0f;
-	float pitch = 12.0f;
+	float pitch = 2.0f;
 
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();
-		Sound a = Sound.valueOf(getConfig().getString("sound", "BLOCK_NOTE_HARP"));
+		Sound a = Sound.valueOf(getConfig().getString("sound", ""));
 		if (a != null)
 			sound = a;
 		volume = (float) getConfig().getDouble("volume", volume);
@@ -33,10 +30,12 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void PlayerChat(PlayerChatEvent e) {
-		Iterator<? extends Player> players = getServer().getOnlinePlayers().iterator();
-		while (players.hasNext()) {
-			Player p = players.next();
-			p.playSound(p.getLocation(), sound, volume, pitch);
+		if (sound != null) {
+			Iterator<? extends Player> players = getServer().getOnlinePlayers().iterator();
+			while (players.hasNext()) {
+				Player p = players.next();
+				p.playSound(p.getLocation(), sound, volume, pitch);
+			}
 		}
 	}
 }
